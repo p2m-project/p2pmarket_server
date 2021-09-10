@@ -103,5 +103,10 @@ class UserController extends Controller
    */
   public function destroy(User $user)
   {
+    $user->tokens()->delete();
+
+    $user->delete();
+
+    return response()->json($user);
   }
 }
