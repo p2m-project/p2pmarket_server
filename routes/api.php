@@ -23,4 +23,9 @@ Route::get('/test', function () {
   return ["message" => "hello world"];
 });
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+  // auth
+  Route::get('/users', [UserController::class, 'index'])->name('users.all');
+});
+
 Route::post('auth/register', [UserController::class, 'store'])->name('auth.register');
