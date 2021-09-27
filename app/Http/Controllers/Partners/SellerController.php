@@ -82,6 +82,7 @@ class SellerController extends Controller
      */
     public function destroy(Seller $seller)
     {
-        //
+        $seller->delete();
+        return response()->json($seller);
     }
 }
