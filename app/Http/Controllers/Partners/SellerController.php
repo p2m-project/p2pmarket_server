@@ -48,7 +48,7 @@ class SellerController extends Controller
      */
     public function show(Seller $seller)
     {
-        //
+        return response()->json($seller);
     }
 
     /**
