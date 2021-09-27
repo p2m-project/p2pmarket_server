@@ -15,13 +15,11 @@ class CreateSellersTable extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('username');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('password');
+            $table->unsignedBigInteger('user_id')->unique();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
