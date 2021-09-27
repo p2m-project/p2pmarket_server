@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Partners\Seller;
 use App\Models\User;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

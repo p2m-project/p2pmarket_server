@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Partners\SellerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
   Route::resource('users', UserController::class)->only([
     "show", "update", "destroy"
+  ]);
+
+  Route::resource('sellers', SellerController::class)->except([
+    "create", "edit"
   ]);
 });
 
