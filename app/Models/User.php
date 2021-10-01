@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Partners\Seller;
+use App\Transformers\Auth\UserTransformer;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,6 +14,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+  public $transformer = UserTransformer::class;
 
   /**
    * The attributes that are mass assignable.
