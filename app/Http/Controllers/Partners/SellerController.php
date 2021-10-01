@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Partners;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\Partners\Seller;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
-class SellerController extends Controller
+class SellerController extends ApiController
 {
     public function __construct()
     {
-        $this->middleware("auth");
+        $this->middleware("auth:sanctum");
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class SellerController extends Controller
     public function index()
     {
         $sellers = Seller::all();
-        return response()->json($sellers);
+        return $this->showAll($sellers);
     }
 
     /**
@@ -40,7 +40,7 @@ class SellerController extends Controller
             "user_id" => $fields["user_id"],
         ]);
 
-        return response()->json($seller, 201);
+        return $this->showOne($seller, 201);
     }
 
     /**
@@ -51,7 +51,7 @@ class SellerController extends Controller
      */
     public function show(Seller $seller)
     {
-        return response()->json($seller);
+        return $this->showOne($seller);
     }
 
     /**
@@ -83,7 +83,7 @@ class SellerController extends Controller
 
         $seller->save();
 
-        return response()->json($seller);
+        return $this->showOne($seller);
     }
 
     /**
@@ -95,6 +95,6 @@ class SellerController extends Controller
     public function destroy(Seller $seller)
     {
         $seller->delete();
-        return response()->json($seller);
+        return $this->showOne($seller);
     }
 }
