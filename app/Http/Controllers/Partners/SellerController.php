@@ -20,16 +20,6 @@ class SellerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -37,7 +27,15 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            "user_id" => "required|integer|exists:users,id|unique:sellers,id",
+        ];
+        $fields = $request->validate($rules);
+        $seller = Seller::create([
+            "user_id" => $fields["user_id"],
+        ]);
+
+        return response()->json($seller, 201);
     }
 
     /**
