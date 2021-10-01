@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Partners;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partners\Seller;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
@@ -28,7 +29,7 @@ class SellerController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            "user_id" => "required|integer|exists:users,id|unique:sellers,id",
+            "user_id" => "required|integer|exists:users,id|unique:sellers,user_id",
         ];
         $fields = $request->validate($rules);
         $seller = Seller::create([
@@ -50,17 +51,6 @@ class SellerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Partners\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Seller $seller)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -69,7 +59,27 @@ class SellerController extends Controller
      */
     public function update(Request $request, Seller $seller)
     {
-        //
+        $rules = [
+            "user_id" => [
+                "integer",
+                "exists:users,id",
+                Rule::unique("sellers", "user_id")->ignore($seller->id)
+            ],
+        ];
+
+        $request->validate($rules);
+
+        $seller->fill($request->only(["user_id"]));
+
+        if ($seller->isClean()) {
+            return response()->json([
+                "message" => "values unchanged",
+            ], 422);
+        }
+
+        $seller->save();
+
+        return response()->json($seller);
     }
 
     /**
