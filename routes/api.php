@@ -23,10 +23,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::resource('users', UserController::class)->only([
     "show", "update", "destroy"
   ]);
-
-  Route::resource('sellers', SellerController::class)->except([
-    "create", "edit"
-  ]);
 });
+
+Route::resource('sellers', SellerController::class)->except([
+  "create", "edit"
+]);
 
 Route::post('auth/register', [UserController::class, 'store'])->name('auth.register');
