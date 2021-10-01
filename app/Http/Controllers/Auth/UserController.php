@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
   /**
    * Display a listing of the resource.
@@ -17,7 +17,7 @@ class UserController extends Controller
   public function index()
   {
     $users = User::all();
-    return response()->json($users);
+    return $this->showAll($users);
   }
 
   /**
@@ -48,7 +48,7 @@ class UserController extends Controller
       "token" => $token
     ];
 
-    return response()->json($response, 201);
+    return $this->showOne($user, 201);
   }
 
   /**
@@ -59,7 +59,7 @@ class UserController extends Controller
    */
   public function show(User $user)
   {
-    return response()->json($user);
+    return $this->showOne($user, 201);
   }
 
   /**
@@ -92,7 +92,7 @@ class UserController extends Controller
 
     $user->save();
 
-    return response()->json($user);
+    return $this->showOne($user, 201);
   }
 
   /**
@@ -107,6 +107,6 @@ class UserController extends Controller
 
     $user->delete();
 
-    return response()->json($user);
+    return $this->showOne($user, 201);
   }
 }
