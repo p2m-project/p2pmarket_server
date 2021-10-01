@@ -85,9 +85,7 @@ class UserController extends ApiController
     ]));
 
     if ($user->isClean()) {
-      return response()->json([
-        "message" => "values unchanged",
-      ], 422);
+      return $this->showUnchangedError();
     }
 
     $user->save();

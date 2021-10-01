@@ -40,4 +40,9 @@ trait ApiResponse
     $instance = $this->transformData($instance, $transformer);
     return $this->successResponse($instance, $code);
   }
+
+  protected function showUnchangedError()
+  {
+    return $this->errorResponse('values unchanged', 422);
+  }
 }

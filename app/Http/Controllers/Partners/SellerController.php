@@ -76,9 +76,7 @@ class SellerController extends ApiController
         $seller->fill($request->only(["user_id"]));
 
         if ($seller->isClean()) {
-            return response()->json([
-                "message" => "values unchanged",
-            ], 422);
+            return $this->showUnchangedError();
         }
 
         $seller->save();
