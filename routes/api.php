@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Partners\SellerController;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
