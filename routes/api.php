@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
   // auth
+
+  // TODO: Ensure all these endpoints check if the user being pointed to is the currently logged in user
   Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
   Route::resource('users', UserController::class)->only([
