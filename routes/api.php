@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Partners\SellerController;
 // use Illuminate\Http\Request;
@@ -25,6 +26,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::resource('users', UserController::class)->only([
     "show", "update", "destroy"
   ]);
+
+  Route::post('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
+  Route::get('auth/show', [AuthController::class, 'show'])->name('auth.user');
 });
 
 Route::resource('sellers', SellerController::class)->except([
@@ -32,3 +36,4 @@ Route::resource('sellers', SellerController::class)->except([
 ]);
 
 Route::post('auth/register', [UserController::class, 'store'])->name('auth.register');
+Route::post('auth/login', [AuthController::class, 'login'])->name('auth.login');
