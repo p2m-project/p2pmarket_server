@@ -22,4 +22,9 @@ class VariantType extends Model
   {
     return $this->belongsTo(Product::class);
   }
+
+  public function variantValue()
+  {
+    return $this->hasMany(VariantValue::class);
+  }
 }
