@@ -2,6 +2,7 @@
 
 namespace App\Models\Products;
 
+use App\Transformers\Products\ProductPricingTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ class ProductPricing extends Model
 {
   use HasFactory, SoftDeletes;
 
-  // public $
+  public $transformer = ProductPricingTransformer::class;
 
   protected $fillable = [
     "price",
