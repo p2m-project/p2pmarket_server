@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Partners\Seller;
 use App\Models\Products\Product;
+use App\Models\Products\ProductPricing;
 use App\Models\Products\VariantType;
 use App\Models\Products\VariantValue;
 use App\Models\User;
@@ -35,5 +36,8 @@ class DatabaseSeeder extends Seeder
 
     $this->command->info("\t VariantValues:");
     VariantValue::Factory(400)->create();
+
+    $this->command->info("\t ProductPricings:");
+    ProductPricing::Factory(500)->create();
   }
 }

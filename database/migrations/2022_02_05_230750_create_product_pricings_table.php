@@ -17,8 +17,8 @@ class CreateProductPricingsTable extends Migration
       $table->id();
       $table->unsignedDecimal('price', 12, 2);
       $table->unsignedBigInteger('product_id');
-      $table->string('upc')->nullable();  // universal product code
-      $table->string('sku')->nullable();  // stock keeping unit
+      $table->string('upc')->unique()->nullable();  // universal product code
+      $table->string('sku')->unique()->nullable();  // stock keeping unit
       $table->softDeletes();
       $table->timestamps();
 
