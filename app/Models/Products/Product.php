@@ -25,8 +25,13 @@ class Product extends Model
     return $this->belongsTo(Seller::class, "seller_user_id");
   }
 
-  public function variants()
+  public function variantTypes()
   {
     return $this->hasMany(VariantType::class);
+  }
+
+  public function productPricings()
+  {
+    return $this->hasMany(ProductPricing::class);
   }
 }
