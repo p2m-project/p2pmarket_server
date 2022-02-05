@@ -24,4 +24,9 @@ class ProductPricing extends Model
   {
     return $this->belongsTo(Product::class);
   }
+
+  public function productVariantParts()
+  {
+    return $this->hasMany(ProductVariantPart::class);
+  }
 }
