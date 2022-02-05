@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Partners\Seller;
 use App\Models\Products\Product;
 use App\Models\Products\VariantType;
+use App\Models\Products\VariantValue;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -31,5 +32,8 @@ class DatabaseSeeder extends Seeder
 
     $this->command->info("\t VariantTypes:");
     VariantType::Factory(200)->create();
+
+    $this->command->info("\t VariantValues:");
+    VariantValue::Factory(400)->create();
   }
 }
