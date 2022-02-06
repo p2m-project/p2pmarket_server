@@ -7,6 +7,7 @@ use App\Models\Products\Product;
 use App\Models\Products\ProductCategory;
 use App\Models\Products\ProductImage;
 use App\Models\Products\ProductPricing;
+use App\Models\Products\ProductSubCategory;
 use App\Models\Products\ProductVariantPart;
 use App\Models\Products\VariantType;
 use App\Models\Products\VariantValue;
@@ -51,5 +52,10 @@ class DatabaseSeeder extends Seeder
 
     $this->command->info("\t ProductCategories:");
     ProductCategory::Factory(50)->create();
+
+    // (n^2 + n) /2 where n is (product-cats - 1)
+    // In practice though provide less than n
+    $this->command->info("\t ProductSubCategories:");
+    ProductSubCategory::Factory(1000)->create();
   }
 }
