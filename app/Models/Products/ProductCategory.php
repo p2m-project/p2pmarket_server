@@ -10,6 +10,8 @@ class ProductCategory extends Model
 {
   use HasFactory, SoftDeletes;
 
+  public $transformer = ProductCategory::class;
+
   protected $fillable = [
     "name"
   ];
