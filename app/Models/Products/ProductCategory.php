@@ -15,4 +15,14 @@ class ProductCategory extends Model
   protected $fillable = [
     "name"
   ];
+
+  public function subCategoryParents()
+  {
+    return $this->hasMany(ProductSubCategory::class, "parent_category_id");
+  }
+
+  public function subCategoryChildren()
+  {
+    return $this->hasMany(ProductSubCategory::class, "child_category_id");
+  }
 }
