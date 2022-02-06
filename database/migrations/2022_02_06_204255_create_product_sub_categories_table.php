@@ -17,9 +17,13 @@ class CreateProductSubCategoriesTable extends Migration
       $table->id();
       $table->unsignedBigInteger('parent_category_id');
       $table->unsignedBigInteger('child_category_id');
+      $table->unsignedBigInteger('subcat_a')->storedAs('least(parent_category_id, child_category_id)');
+      $table->unsignedBigInteger('subcat_b')->storedAs('greatest(parent_category_id, child_category_id)');
       $table->timestamps();
       $table->softDeletes();
 
+      $table->unique(['subcat_a', 'subcat_b']);
+      // TODO: Remove this, it is redundant
       $table->unique(['parent_category_id', 'child_category_id']);
       $table->foreign('parent_category_id')->references('id')->on('product_categories');
       $table->foreign('child_category_id')->references('id')->on('product_categories');
