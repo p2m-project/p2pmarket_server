@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Partners\Seller;
 use App\Models\Products\Product;
+use App\Models\Products\ProductImage;
 use App\Models\Products\ProductPricing;
 use App\Models\Products\ProductVariantPart;
 use App\Models\Products\VariantType;
@@ -43,5 +44,8 @@ class DatabaseSeeder extends Seeder
 
     $this->command->info("\t ProductVariantParts:");
     ProductVariantPart::Factory(500)->create();
+
+    $this->command->info("\t ProductImages:");
+    ProductImage::Factory(200)->create();
   }
 }
