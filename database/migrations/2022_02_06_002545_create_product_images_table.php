@@ -19,8 +19,8 @@ class CreateProductImagesTable extends Migration
       // TODO: make this an enum of possible values and add a default value
       $table->string('type')->nullable();
       $table->unsignedBigInteger('product_id');
-      $table->softDeletes();
       $table->timestamps();
+      $table->softDeletes();
 
       $table->foreign('product_id')->references('id')->on('products');
     });

@@ -17,8 +17,8 @@ class CreateProductVariantPartsTable extends Migration
       $table->id();
       $table->unsignedBigInteger('product_pricing_id');
       $table->unsignedBigInteger('variant_value_id');
-      $table->softDeletes();
       $table->timestamps();
+      $table->softDeletes();
 
       $table->unique(['product_pricing_id', 'variant_value_id']);
       $table->foreign('product_pricing_id')->references('id')->on('product_pricings');
