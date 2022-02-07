@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Partners\SellerController;
+use App\Http\Controllers\Products\VariantTypeController;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
   Route::resource('users', UserController::class)->only([
     "show", "update", "destroy"
+  ]);
+
+
+  Route::resource('variantTypes', VariantTypeController::class)->except([
+    "create", "edit"
   ]);
 
   Route::post('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
