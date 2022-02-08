@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Partners\SellerController;
+use App\Http\Controllers\Products\ProductCategoryController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Products\VariantTypeController;
 // use Illuminate\Http\Request;
@@ -31,6 +32,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
   Route::resource('products', ProductController::class)->except([
+    "create", "edit"
+  ]);
+
+  Route::resource('productCategories', ProductCategoryController::class)->except([
     "create", "edit"
   ]);
 
