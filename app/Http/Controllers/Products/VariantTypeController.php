@@ -32,6 +32,25 @@ class VariantTypeController extends GenericController
           )
         ],
       ];
-    }, []);
+    }, function (Request $request, int $id) {
+      return [
+        "name" => [
+          "string",
+          Rule::unique("variant_types", "name")->ignore($id)->where(
+            function ($query) use ($request,) {
+              return $query->where("product_id", $request->product_id);
+            }
+          )
+        ],
+        "product_id" => [
+          "integer", "exists:products,id",
+          Rule::unique("variant_types", "product_id")->ignore($id)->where(
+            function ($query) use ($request) {
+              return $query->where("name", $request->name);
+            }
+          )
+        ],
+      ];
+    });
   }
 }

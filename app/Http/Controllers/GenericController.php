@@ -10,7 +10,7 @@ class GenericController extends ApiController
   private $postRules;
   private $putRules;
 
-  public function __construct($modelClass, callable $postRules, array $putRules)
+  public function __construct($modelClass, callable $postRules, callable $putRules)
   {
     $this->model = $modelClass;
     $this->postRules = $postRules;
@@ -68,7 +68,8 @@ class GenericController extends ApiController
    */
   public function update(Request $request, $id)
   {
-    $fields = $request->validate($this->putRules);
+    $rules = ($this->putRules)($request, $id);
+    $fields = $request->validate($rules);
     $instance = $this->model::findOrFail($id);
 
     $instance->fill($fields);
