@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class GenericController extends ApiController
 {
@@ -10,7 +10,7 @@ class GenericController extends ApiController
   private $postRules;
   private $putRules;
 
-  public function __construct($modelClass, array $postRules, array $putRules)
+  public function __construct($modelClass, callable $postRules, array $putRules)
   {
     $this->model = $modelClass;
     $this->postRules = $postRules;
@@ -38,7 +38,8 @@ class GenericController extends ApiController
    */
   public function store(Request $request)
   {
-    $fields = $request->validate($this->postRules);
+    $rules = ($this->postRules)($request);
+    $fields = $request->validate($rules);
     $instance = $this->model::create($fields);
 
     return $this->showOne($instance, 201);

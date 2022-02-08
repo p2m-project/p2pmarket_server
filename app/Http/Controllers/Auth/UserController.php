@@ -48,7 +48,7 @@ class UserController extends ApiController
       "token" => $token
     ];
 
-    return $this->showOne($user, 201);
+    return $this->showOne($response, 201);
   }
 
   /**
