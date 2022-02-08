@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateProductSubCategoriesTable extends Migration
@@ -28,6 +29,8 @@ class CreateProductSubCategoriesTable extends Migration
       $table->foreign('parent_category_id')->references('id')->on('product_categories');
       $table->foreign('child_category_id')->references('id')->on('product_categories');
     });
+
+    DB::statement('ALTER TABLE product_sub_categories ADD CONSTRAINT product_sub_categories_chk_cols_not_equal CHECK (parent_category_id <> child_category_id);');
   }
 
   /**
