@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Products;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\GenericController;
+use App\Models\Products\Product;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
-class ProductController extends Controller
+class ProductController extends GenericController
 {
 
   public function __construct()
   {
-    parent::__construct(VariantType::class, function (Request $request) {
+    parent::__construct(Product::class, function (Request $request) {
       return [
         "name" => "required|string",
         "description" => "string",
