@@ -28,7 +28,7 @@ class ProductSubCategoryController extends GenericController
                 ->orWhere("child_category_id", $request->parent_category_id);
             }
           ),
-          // ensures the passed parent is already a child for the passed chld
+          // ensures the passed parent is not already a child for the passed chld
           Rule::unique("product_sub_categories", "child_category_id")->where(
             function ($query) use ($request) {
               return $query
@@ -46,7 +46,7 @@ class ProductSubCategoryController extends GenericController
                 ->orWhere("parent_category_id", $request->child_category_id);
             }
           ),
-          // ensures the passed child is already a parent for the passed parent
+          // ensures the passed child is not already a parent for the passed parent
           Rule::unique("product_sub_categories", "parent_category_id")->where(
             function ($query) use ($request) {
               return $query
@@ -70,7 +70,7 @@ class ProductSubCategoryController extends GenericController
                 ->orWhere("child_category_id", $request->parent_category_id);
             }
           ),
-          // ensures the passed parent is already a child for the passed chld
+          // ensures the passed parent is not already a child for the passed chld
           Rule::unique("product_sub_categories", "child_category_id")->ignore($id)->where(
             function ($query) use ($request) {
               return $query
@@ -88,7 +88,7 @@ class ProductSubCategoryController extends GenericController
                 ->orWhere("parent_category_id", $request->child_category_id);
             }
           ),
-          // ensures the passed child is already a parent for the passed parent
+          // ensures the passed child is not already a parent for the passed parent
           Rule::unique("product_sub_categories", "parent_category_id")->ignore($id)->where(
             function ($query) use ($request) {
               return $query
