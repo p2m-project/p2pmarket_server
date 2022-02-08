@@ -31,6 +31,11 @@ class CreateProductSubCategoriesTable extends Migration
     });
 
     DB::statement('ALTER TABLE product_sub_categories ADD CONSTRAINT product_sub_categories_chk_cols_not_equal CHECK (parent_category_id <> child_category_id);');
+    // HACK: With all these rules in place, we can still have cyclic chains
+    // e.g:
+    // 51->52
+    // 52->53
+    // 53->51
   }
 
   /**
