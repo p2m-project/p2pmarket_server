@@ -93,6 +93,7 @@ class GenericController extends ApiController
   public function destroy($id)
   {
     $instance = $this->model::findOrFail($id);
+    // TODO: Allow permanent deleting
     $instance->delete();
     return $this->showOne($instance);
   }
