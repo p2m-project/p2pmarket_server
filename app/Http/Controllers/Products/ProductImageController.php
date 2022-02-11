@@ -42,17 +42,6 @@ class ProductImageController extends ApiController
   }
 
   /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\Products\ProductImage  $productImage
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(ProductImage $productImage)
-  {
-    //
-  }
-
-  /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
@@ -72,6 +61,7 @@ class ProductImageController extends ApiController
    */
   public function destroy(ProductImage $productImage)
   {
-    //
+    $productImage->delete();
+    return $this->showOne($productImage);
   }
 }
