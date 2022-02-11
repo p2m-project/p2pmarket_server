@@ -27,7 +27,20 @@ class ProductImageController extends ApiController
    */
   public function store(Request $request)
   {
-    //
+    $rules = [
+      "image" => "required|image",
+      "type" => "required|string",
+      "product_id" => "required|integer|exists:products,id",
+    ];
+
+    $request->validate($rules);
+
+    $data = $request->all();
+    $data['image'] = $request->image->store('', 'images');
+
+    $productImage = ProductImage::create($data);
+
+    return $this->showOne($productImage);
   }
 
   /**
