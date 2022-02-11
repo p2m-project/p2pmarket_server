@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Products;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\GenericController;
 use App\Models\Products\ProductCategoryClassification;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class ProductCategoryClassificationController extends Controller
+class ProductCategoryClassificationController extends GenericController
 {
-  // TODO: Test this controller
   public function __construct()
   {
     parent::__construct(ProductCategoryClassification::class, function (Request $request) {
