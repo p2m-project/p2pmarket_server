@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Partners\SellerController;
+use App\Http\Controllers\Products\ProductCategoryClassificationController;
 use App\Http\Controllers\Products\ProductCategoryController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Products\ProductSubCategoryController;
@@ -41,6 +42,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   ]);
 
   Route::resource('productSubCategories', ProductSubCategoryController::class)->except([
+    "create", "edit"
+  ]);
+
+  Route::resource('productCategoryClassifications', ProductCategoryClassificationController::class)->except([
     "create", "edit"
   ]);
 
