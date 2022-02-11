@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\ApiController;
 use App\Models\Products\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductImageController extends ApiController
 {
@@ -63,7 +64,34 @@ class ProductImageController extends ApiController
    */
   public function update(Request $request, ProductImage $productImage)
   {
-    //
+    $rules = [
+      "image" => "image",
+      "type" => "string",
+      "product_id" => "integer|exists:products,id",
+    ];
+
+    $request->validate($rules);
+
+    $data = $request->all();
+
+    $productImage->fill($request->only([
+      "type",
+      "product_id",
+    ]));
+
+
+    if ($request->hasFile('image')) {
+      Storage::disk("images")->delete($productImage->image);
+      $productImage->image = $request->image->store('', 'images');
+    }
+
+    if ($productImage->isClean()) {
+      return $this->showUnchangedError();
+    }
+
+    $productImage->save();
+
+    return $this->showOne($productImage);
   }
 
   /**
