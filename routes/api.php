@@ -47,7 +47,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     "create", "edit"
   ]);
 
-  // TODO: Test this endpoint
   Route::resource('productCatClassifications', ProductCategoryClassificationController::class)->except([
     "create", "edit"
   ]);
