@@ -7,6 +7,7 @@ use App\Http\Controllers\Products\ProductCategoryClassificationController;
 use App\Http\Controllers\Products\ProductCategoryController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Products\ProductImageController;
+use App\Http\Controllers\Products\ProductPricingController;
 use App\Http\Controllers\Products\ProductSubCategoryController;
 use App\Http\Controllers\Products\VariantTypeController;
 use App\Http\Controllers\Products\VariantValueController;
@@ -53,6 +54,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
   // access via host:port/img/name.ext
   Route::resource('productImages', ProductImageController::class)->except([
+    "create", "edit"
+  ]);
+
+  Route::resource('productPricings', ProductPricingController::class)->except([
     "create", "edit"
   ]);
 
