@@ -6,6 +6,7 @@ use App\Http\Controllers\Partners\SellerController;
 use App\Http\Controllers\Products\ProductCategoryClassificationController;
 use App\Http\Controllers\Products\ProductCategoryController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Products\ProductImageController;
 use App\Http\Controllers\Products\ProductSubCategoryController;
 use App\Http\Controllers\Products\VariantTypeController;
 // use Illuminate\Http\Request;
@@ -47,6 +48,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
   // TODO: Test this endpoint
   Route::resource('productCatClassifications', ProductCategoryClassificationController::class)->except([
+    "create", "edit"
+  ]);
+
+  // access via host:port/img/name.ext
+  Route::resource('productImages', ProductImageController::class)->except([
     "create", "edit"
   ]);
 
