@@ -9,6 +9,7 @@ use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Products\ProductImageController;
 use App\Http\Controllers\Products\ProductPricingController;
 use App\Http\Controllers\Products\ProductSubCategoryController;
+use App\Http\Controllers\Products\ProductVariantPartController;
 use App\Http\Controllers\Products\VariantTypeController;
 use App\Http\Controllers\Products\VariantValueController;
 // use Illuminate\Http\Request;
@@ -58,6 +59,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   ]);
 
   Route::resource('productPricings', ProductPricingController::class)->except([
+    "create", "edit"
+  ]);
+
+  Route::resource('productVariantParts', ProductVariantPartController::class)->except([
     "create", "edit"
   ]);
 
