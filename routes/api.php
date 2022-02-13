@@ -9,6 +9,7 @@ use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Products\ProductImageController;
 use App\Http\Controllers\Products\ProductSubCategoryController;
 use App\Http\Controllers\Products\VariantTypeController;
+use App\Http\Controllers\Products\VariantValueController;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +58,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   ]);
 
   Route::resource('variantTypes', VariantTypeController::class)->except([
+    "create", "edit"
+  ]);
+
+  Route::resource('variantValues', VariantValueController::class)->except([
     "create", "edit"
   ]);
 
