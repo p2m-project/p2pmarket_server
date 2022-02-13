@@ -102,6 +102,9 @@ class ProductImageController extends ApiController
    */
   public function destroy(ProductImage $productImage)
   {
+    // TODO: Only delete image when hard deleting
+    Storage::disk("images")->delete($productImage->image);
+
     $productImage->delete();
     return $this->showOne($productImage);
   }
