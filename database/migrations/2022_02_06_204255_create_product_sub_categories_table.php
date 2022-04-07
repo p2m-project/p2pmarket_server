@@ -25,7 +25,7 @@ class CreateProductSubCategoriesTable extends Migration
 
       $table->unique(['subcat_a', 'subcat_b']);
       // TODO: Remove this, it is redundant
-      $table->unique(['parent_category_id', 'child_category_id']);
+      $table->unique(['parent_category_id', 'child_category_id'], "product_sub_cats_parent_child");
       $table->foreign('parent_category_id')->references('id')->on('product_categories');
       $table->foreign('child_category_id')->references('id')->on('product_categories');
     });

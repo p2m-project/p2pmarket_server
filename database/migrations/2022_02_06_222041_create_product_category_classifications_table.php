@@ -20,7 +20,7 @@ class CreateProductCategoryClassificationsTable extends Migration
       $table->timestamps();
       $table->softDeletes();
 
-      $table->unique(['product_id', 'product_category_id']);
+      $table->unique(['product_id', 'product_category_id'], "prod_cat_class_prod_cat");
       $table->foreign('product_id')->references('id')->on('products');
       $table->foreign('product_category_id')->references('id')->on('product_categories');
     });
